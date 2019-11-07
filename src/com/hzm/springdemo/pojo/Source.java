@@ -17,6 +17,12 @@ public class Source {
      * 被杯子大小
      */
     private String size;
+    public void init(){
+        System.out.println(this.getClass().getName()+"开始自定义的初始化方法");
+    }
+    public void destroy(){
+        System.out.println(this.getClass().getName()+"开始自定义的销毁方法");
+    }
 
     public String getFruit() {
         return fruit;
