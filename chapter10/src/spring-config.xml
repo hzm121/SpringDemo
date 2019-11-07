@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+<!--    方式一：构造器注入-->
+<!--<bean id="role" class="com.hzm.springdemo.pojo.Role">-->
+<!--    <constructor-arg name="note" value="公司管理者"></constructor-arg>-->
+<!--    <constructor-arg name="roleName" value="总经理"></constructor-arg>-->
+<!--</bean>-->
+<!--    方式二：setter注入(需要无参构造器)-->
+    <bean id="role" class="com.hzm.springdemo.pojo.Role">
+        <property name="roleName" value="老板"></property>
+        <property name="note" value="公司所有者"></property>
+    </bean>
+<!--    接口注入，此处略，日后再看-->
+
+<!--    集合的装配-->
+    <bean id="complexAssembly" class="com.hzm.springdemo.pojo.ComPlexAssembly">
+        <property name="id" value="1"></property>
+        <property name="list">
+            <list>
+                <value>list1</value>
+                <value>list2</value>
+                <value>list3</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="map1" value="mapValue1"></entry>
+                <entry key="map2" value="mapValue2"></entry>
+                <entry key="map3" value="mapValue3"></entry>
+            </map>
+        </property>
+        <property name="array">
+            <array>
+                <value>arr1</value>
+                <value>arr2</value>
+                <value>arr3</value>
+            </array>
+        </property>
+        <property name="set">
+            <set>
+                <value>set1</value>
+                <value>set2</value>
+                <value>set3</value>
+            </set>
+        </property>
+    </bean>
+    <bean id="role1" class="com.hzm.springdemo.pojo.Role">
+        <property name="id" value="1"></property>
+        <property name="roleName" value="roleName1"></property>
+        <property name="note" value="Note1"></property>
+    </bean>
+    <bean id="role2" class="com.hzm.springdemo.pojo.Role">
+        <property name="id" value="2"></property>
+        <property name="roleName" value="roleName2"></property>
+        <property name="note" value="Note2"></property>
+    </bean>
+    <bean id="user1" class="com.hzm.springdemo.pojo.User">
+        <property name="id" value="1"></property>
+        <property name="userName" value="userName1"></property>
+        <property name="note" value="Note1"></property>
+    </bean>
+    <bean id="user2" class="com.hzm.springdemo.pojo.User">
+        <property name="id" value="1"></property>
+        <property name="userName" value="roleName2"></property>
+        <property name="note" value="Note2"></property>
+    </bean>
+    <bean id="userRoleAssemble" class="com.hzm.springdemo.pojo.UserRoleAssembly">
+        <property name="id" value="1"></property>
+        <property name="list">
+            <list>
+                <ref bean="role1"></ref>
+                <ref bean="role2"></ref>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <ref bean="role1"></ref>
+                <ref bean="role2"></ref>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key-ref="role1" value-ref="user1"></entry>
+                <entry key-ref="role2" value-ref="user2"></entry>
+            </map>
+        </property>
+    </bean>
+</beans>
